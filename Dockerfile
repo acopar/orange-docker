@@ -3,7 +3,7 @@ FROM consol/centos-xfce-vnc
 USER root
 
 # conda install requires bzip
-RUN yum -y install python3-pip python3-dev python-virtualenv bzip2
+RUN yum -y install python3-pip python3-dev python-virtualenv bzip2 gcc-c++
 
 ENV USER orange
 ENV PASSWORD orange
@@ -24,6 +24,7 @@ RUN $CONDA_DIR/bin/conda config --add channels conda-forge
 RUN bash -c "source $CONDA_DIR/bin/activate orange3 && \
     $CONDA_DIR/bin/conda install orange3 && $CONDA_DIR/bin/conda install -c defaults pyqt qt"
 RUN echo 'export PATH=~/.conda/bin:$PATH' >> /home/orange/.bashrc
+RUN bash -c "source $CONDA_DIR/bin/activate orange3 && pip install Orange3-Text Orange3-ImageAnalytics Orange3-Network"
 
 COPY icons/orange.png /usr/share/backgrounds/images/orange.png
 COPY icons/orange.png .conda/share/orange3/orange.png
