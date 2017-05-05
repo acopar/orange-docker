@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+    head:
+        image: acopar/orange-docker
+        ports: 
+            - "5901:5901"
+            - "6901:6901"
+        volumes:
+            - orange-profile:/home/orange/.config/biolab.si
+
+volumes:
+    orange-profile:
+        external: true
