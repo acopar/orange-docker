@@ -3,7 +3,7 @@ FROM consol/centos-xfce-vnc
 USER root
 
 # conda install requires bzip
-RUN yum -y install python3-pip python3-dev python-virtualenv bzip2 gcc-c++
+RUN yum -y install python3-pip python3-dev python-virtualenv bzip2 gcc-c++ git
 
 ENV USER orange
 ENV PASSWORD orange
@@ -30,10 +30,11 @@ COPY icons/orange.png /usr/share/backgrounds/images/orange.png
 COPY icons/orange.png .conda/share/orange3/orange.png
 COPY orange/orange-canvas.desktop Desktop/orange-canvas.desktop
 COPY config/xfce4 .config/xfce4
+COPY install/chromium-wrapper install/chromium-wrapper
 
 # COPY does not obey USER directive
 USER root
-RUN chown -R orange:orange .config Desktop
+RUN chown -R orange:orange .config Desktop install
 USER orange
 
 # Prepare for external settings volume
