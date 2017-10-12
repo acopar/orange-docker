@@ -4,8 +4,8 @@ services:
     head:
         image: acopar/orange-docker
         ports: 
-            - "5901:5901"
-            - "6901:6901"
+            - "127.0.0.1:5901:5901"
+            - "127.0.0.1:6901:6901"
         volumes:
             - orange-profile:/home/orange/.config/biolab.si
 
