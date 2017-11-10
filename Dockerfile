@@ -17,12 +17,11 @@ RUN gpasswd -a ${USER} wheel
 USER orange
 WORKDIR ${HOME}
 
-RUN wget -q https://repo.continuum.io/archive/Anaconda3-4.3.1-Linux-x86_64.sh -O anaconda.sh
+RUN wget -q https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh -O anaconda.sh
 RUN bash anaconda.sh -b -p ~/.conda && rm anaconda.sh
-RUN $CONDA_DIR/bin/conda create python=3.5 --name orange3
+RUN $CONDA_DIR/bin/conda create python=3.6 --name orange3
 RUN $CONDA_DIR/bin/conda config --add channels conda-forge
-RUN bash -c "source $CONDA_DIR/bin/activate orange3 && \
-    $CONDA_DIR/bin/conda install orange3 && $CONDA_DIR/bin/conda install -c defaults pyqt qt"
+RUN bash -c "source $CONDA_DIR/bin/activate orange3 && $CONDA_DIR/bin/conda install orange3"
 RUN echo 'export PATH=~/.conda/bin:$PATH' >> /home/orange/.bashrc
 RUN bash -c "source $CONDA_DIR/bin/activate orange3 && pip install Orange3-Text Orange3-ImageAnalytics Orange3-Network"
 
