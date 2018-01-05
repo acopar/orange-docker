@@ -2,11 +2,7 @@
 
 Docker image for Orange Data Mining Suite.
 
-- 
-- 
-
-
-### Dependencies ###
+## Dependencies ##
 
 - [docker](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-docker-ce).
 
