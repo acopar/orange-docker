@@ -23,7 +23,7 @@ RUN gpasswd -a ${USER} sudo
 USER orange
 WORKDIR ${HOME}
 
-RUN wget -q https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh -O anaconda.sh
+RUN wget -q https://repo.continuum.io/archive/Anaconda3-5.2.0-Linux-x86_64.sh -O anaconda.sh
 RUN bash anaconda.sh -b -p ~/.conda && rm anaconda.sh
 RUN $CONDA_DIR/bin/conda create python=3.6 --name orange3
 RUN $CONDA_DIR/bin/conda config --add channels conda-forge
