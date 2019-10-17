@@ -23,7 +23,7 @@ RUN gpasswd -a ${USER} sudo
 USER orange
 WORKDIR ${HOME}
 
-RUN wget -q https://repo.continuum.io/archive/Anaconda3-5.2.0-Linux-x86_64.sh -O anaconda.sh
+RUN wget -q -O anaconda.sh https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh
 RUN bash anaconda.sh -b -p ~/.conda && rm anaconda.sh
 RUN $CONDA_DIR/bin/conda create python=3.6 --name orange3
 RUN $CONDA_DIR/bin/conda config --add channels conda-forge
@@ -40,14 +40,15 @@ ADD ./install/chromium-wrapper install/chromium-wrapper
 USER root
 RUN chown -R orange:orange .config Desktop install
 
-ADD ./install/vnc_startup.sh /dockerstartup/vnc_startup.sh
-RUN chmod a+x /dockerstartup/vnc_startup.sh
+ADD ./install/add-geometry.sh /dockerstartup/add-resolution.sh
+RUN chmod a+x /dockerstartup/add-resolution.sh
 
 USER orange
 
 # Prepare for external settings volume
 RUN mkdir .config/biolab.si
 
+ENV VNC_COL_DEPTH 24
 ENV VNC_RESOLUTION 1920x1080
 ENV VNC_PW orange
 
